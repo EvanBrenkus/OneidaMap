@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oneida Movement Map</title>
+  <!-- Mapbox GL JS CSS -->
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css" rel="stylesheet" />
+  <!-- Custom CSS (optional) -->
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    /* Basic inline styling for demo purposes */
+    body, html { margin: 0; padding: 0; height: 100%; }
+    #map { width: 100%; height: 100vh; }
+    #timeline { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); background: rgba(255, 255, 255, 0.8); padding: 10px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <!-- Map container -->
+  <div id="map"></div>
+  <!-- Timeline container (for future timeline integration with D3.js) -->
+  <div id="timeline">
+    <p>Timeline will go here</p>
+  </div>
+
+  <!-- Mapbox GL JS -->
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
+  <!-- D3.js -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+
+  <script>
+    // Set your Mapbox access token here
+    mapboxgl.accessToken = 'pk.eyJ1IjoiZXZhbi1icmVua3VzIiwiYSI6ImNtN3VvenFpbDAzMTEyam40YXlmM2xneHUifQ.83RkMYLSmAWuyLE7bSAmoQ';
+
+    // Initialize the map
+    const map = new mapboxgl.Map({
+      container: 'map', // container id
+      style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
+      center: [-75.343, 39.984], // starting position [lng, lat] (update to desired start)
+      zoom: 3 // starting zoom
+    });
+
+    // Example: Using D3 to add a simple overlay element (for demonstration)
+    const svg = d3.select(map.getCanvasContainer())
+      .append("svg")
+      .attr("class", "overlay");
+
+    // Add a sample circle element to the overlay
+    svg.append("circle")
+      .attr("cx", 100)
+      .attr("cy", 100)
+      .attr("r", 20)
+      .style("fill", "red");
+
+    // Future: You can use D3 to bind timeline data and animate transitions on the map.
+  </script>
+</body>
+</html>
